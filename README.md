@@ -1,4 +1,48 @@
 # MiniMind2-Small 全流程尝试
+
+更多可见[我的笔记]()
+
+---
+
+项目结构：
+
+```
+├── dataset/
+│     ├── __init__.py
+│     ├── bbc-news-data.csv
+│     ├── dataset.md
+│     ├── dataset_infos.json
+│     ├── dpo.jsonl
+│     ├── lm_dataset.py
+│     └── rlaif-mini.jsonl
+├── eval_llm.py
+├── hands-on/
+│     ├── sft_eval.ipynb
+│     ├── swanlog/
+│     └── text-classification/
+│          ├── cls_sft.ipynb
+│          ├── cls_sft_eval.ipynb
+│          ├── cls_sft_old.ipynb
+│          ├── en_cls_sft_splitter.ipynb
+│          ├── en_pretrain_splitter.ipynb
+│          ├── en_sft_splitter.ipynb
+│          ├── few_shot1_post.txt
+│          ├── few_shot1_pre.txt
+│          └── zero_and_few_shots_eval.ipynb
+├── images/
+├── model/
+│     ├── __init__.py
+│     ├── model_lora.py
+│     ├── model_minimind.py
+│     ├── tokenizer.json
+│     └── tokenizer_config.json
+├── scripts/
+├── trainer/
+├── out/
+├── requirements.txt
+└── readme.md
+```
+
 ## 第一部分：Pretrain + SFT Pipeline 复现
 
 硬件：室(活)友(佛)的 RTX 5070Ti 12GB ｜ AutoDL 云 RTX 3090
@@ -10,7 +54,7 @@
 >在 Pretrain 阶段，模型进行无监督学习，模型输出的每一个 token 都会和真实 token 计算 loss.
 
 在 `pretrain_hq.jsonl` 数据集上从零开始训练了 1 epoch，耗时 ~2hr.
-![](../../attachments/Pasted%20image%2020251210162213.png)
+![](./images/Pasted%20image%2020251210162213.png)
 
 可以看到使用了余弦退火学习率，loss 中后期下降不明显，和原作者的 metrics 吻合。
 
@@ -136,7 +180,7 @@
 > 在 SFT 阶段，模型会被训练对话能力，因此模型对 prompt 的“下一 token 预测”将不会被计算 loss，而只对模型自己输出的内容与我们期待它输出的内容计算 loss.  这种计算序列的一部分的 loss 是通过 mask 实现的。
 
 在 `sft_mini_512.jsonl` 上 SFT 了 2 epochs，耗时 7hr.
-![](../../attachments/Pasted%20image%2020251211123341.png)
+![](./images/Pasted%20image%2020251211123341.png)
 
 <details>
 <summary>
@@ -187,7 +231,7 @@
 
 ## 第二部分：模型架构理解
 
-![](../../attachments/Pasted%20image%2020251210190835.png)
+![](./images/Pasted%20image%2020251210190835.png)
 
 #### Tokenizer
 
@@ -324,7 +368,7 @@ def ngram_repetition(tokens, n=4):
 ```
 
 下图是 `temperature=0.3` 的情况，平均 token 长度为 `335.492424`，平均 4-gram 重复率为 `0.660548`：
-![](../../attachments/Pasted%20image%2020251211154618.png)
+![](./images/Pasted%20image%2020251211154618.png)
 特别地，我保存了模型某一次的回答，可以看到模型确实一直在重复最后的几个 token：
 <details>
 <summary>
@@ -351,14 +395,14 @@ def ngram_repetition(tokens, n=4):
 
 下图是使用 `temperature=0.85` （模型默认）的情况，平均 token 长度为 `332.098485`，平均 4-gram 重复率为 `0.360656`：
 
-![](../../attachments/Pasted%20image%2020251211160039.png)
+![](./images/Pasted%20image%2020251211160039.png)
 可以看到，模型重复地说废话的趋势明显受到了抑制，但输出长度没有明显变少。
 
 此外，可以注意到模型对第三个问题的回答始终不好（虽然我们的统计方法可能对“生成代码”类问题不友好，但实际上经过更仔细地测试，模型确实没有学会写代码）。
 
 最后，还有一个使用 `temperature=1.7` 的测试：
 
-![](../../attachments/Pasted%20image%2020251211171917.png)
+![](./images/Pasted%20image%2020251211171917.png)
 
 可以看到重复率低了很多！但输出长度变化仍然不大（除了第三个问题）。
 
@@ -407,15 +451,15 @@ GPT 在这三个问题上的回答（使用临时对话）的统计数据：
 
 <div style="display: flex;justify-content: center;align-items:center">
 <figure style="margin:3px">
-<img style="display:block" src="../../attachments/Pasted%20image%2020251212133751.png" width=200>
+<img style="display:block" src="./images/Pasted%20image%2020251212133751.png" width=200>
 <figcaption style="text-align:center;translate: 17px;">Top-P = 0.3</figcaption>
 </figure>
 <figure style="margin:3px">
-<img src="../../attachments/Pasted%20image%2020251212133827.png" width=200>
+<img src="./images/Pasted%20image%2020251212133827.png" width=200>
 <figcaption style="text-align:center;translate: 17px;">Top-P = 0.55</figcaption>
 </figure>
 <figure style="margin:3px">
-<img src="../../attachments/Pasted%20image%2020251212134815.png" width=200>
+<img src="./images/Pasted%20image%2020251212134815.png" width=200>
 <figcaption style="text-align:center;translate: 17px;">Top-P = 0.85</figcaption>
 </figure>
 </div>
@@ -489,7 +533,7 @@ GPT 的回答作为标准参考（使用临时对话），其数次回答的 W4R
 
 而我们的 MiniMind2-Small 模型在不同 Top-P（0.85, 0.55, 0.3） 下的表现：
 
-![](../../attachments/Pasted%20image%2020251212184107.png)
+![](./images/Pasted%20image%2020251212184107.png)
 
 可以看到，Top-P 确实会影响模型的代码输出质量，其作用和温度类似（这点从理论上也可以预见）。
 
@@ -581,6 +625,7 @@ Your Output(Must be one of "business entertainment politics sport tech"):
 | ----- | -------- |
 | 2     | 0.05     |
 | 6     | 0.2      |
+
 在之后的 epoch 中，accuracy 没有继续提升，让我十分沮丧。
 
 我观察了模型的输出，发现它似乎放弃了理解内容，而是每次都倾向于输出 sport（也解释了接近 1/5 的准确率）。
@@ -592,6 +637,7 @@ Your Output(Must be one of "business entertainment politics sport tech"):
 >由于调参甚久，且我以广度优先的方式尝试了很多方法，因此这里无法展示所有中间产物，只讲成品。
 
 >终于调出来啦啊啊啊啊啊
+
 ### Text Classification 二周目
 
 在上一节中模型效果很差。我考虑了很多因素，最终归因于模型预训练的语言（中文）和分类所要使用的语言（英文）差别过大。这就导致了预训练模型对英文一窍不通，只能瞎蒙。因此，我们需要在纯英数据集从头上训一个 Pretrained MiniMind2-Small.  
@@ -612,6 +658,7 @@ Your Output(Must be one of "business entertainment politics sport tech"):
 #### SFT²
 
 当 context learning 不奏效的时候，还得祭出梯度下降大法！
+
 ##### 全参数微调
 
 使用在前述的在英文数据集上预训练的模型，在 `bbc-news-data` 上有监督微调了 10 epochs，最终模型在测试集上的准确度达到了 79%！  
@@ -682,7 +729,7 @@ Your Output(Must be one of "business entertainment politics sport tech"):
 DPO 的做法是，把模型复制成为两份，一份作为参考（ref），一份进行训练（policy）。每次将一个好的回答（chosen）和坏的回答（rejected）喂给二者，比较二者输出 chosen 的概率与输出 rejected 的概率。具体地，是把这两种概率求对数（避免累乘导致下溢），然后除以序列长度，再做差，这个差距称为 logratios（越大越好）。训练的目标是让 policy 模型的 logratio 比 ref 模型的大。  
 损失函数公式为：  
 $$
-\mathrm{loss}=−\log\sigma(\beta\cdot (\text{policy\_logratios} - \text{ref\_logratios}))
+\mathrm{loss}=−\log\sigma(\beta\cdot (\text{policy_logratios} - \text{ref_logratios}))
 $$
 
 其中的 $\beta$ 是一个超参数，$\sigma$ 是 sigmoid 函数。
@@ -690,3 +737,7 @@ $$
 
 使用 MiniMind2 提供的 `train_dpo.py`，从[Zero-Shot²](#Zero-Shot²)中得到的在英文数据集上进行 Pretrain 和 SFT 过的模型权重开始，进行 DPO.  
 使用 1e-7 学习率训练 1 epoch 后，实测模型确实尝试变得更加“友好”，但其语言水平和技能出现倒退（应该是学习率过大导致的遗忘？），尤其是写代码能力，退化严重，只能输出重复字符。
+
+## 总结
+
+两周的时间中，70% 用在了学习李沐和李宏毅老师的课程，剩余时间用于完成项目，因此看起来有些仓促。美中不足的就是 text-classification 没有调出更好的精度（终究是没找到 bug 在哪里），以及 RLHF 没有更深入地探究。
