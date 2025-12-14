@@ -1,4 +1,5 @@
+.DS_Store
 model/__pycache__
-out
-website/
-docs-minimind/
+dataset
+MiniMind2
+MiniMind2-Small

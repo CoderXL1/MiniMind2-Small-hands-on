@@ -1,0 +1,62 @@
+You are a text classifier. Classify each passage into **exactly one** of the following categories:
+- business
+- entertainment
+- politics
+- sport
+- tech
+
+Output **only the label**, nothing else.
+
+Here are some examples:
+
+Example 1:
+title:
+Wales 'must learn health lessons'
+
+content:
+" The new health minister for Wales says there are lessons to learn from England in tackling waiting lists.  Dr Brian Gibbons, on his first full day in the job after Jane Hutt was sacked, admitted ""big challenges"" but insisted the ""essentials"" were in place. But both Plaid Cymru and the Liberal Democrats said Dr Gibbons needed to change policy. Meanwhile Ms Hutt defended her record, saying waiting times and lists were ""only 10% of the health agenda. Dr Gibbons, who was a GP in Blaengwynfi, in the Upper Afan Valley, before becoming AM for Aberavon, said NHS staff wanted a period of consolidation after ""tremendous change and reform"". One of the biggest problems which had faced Ms Hutt during her five-and-a-half years as the assembly's first health minister was the length of waiting lists in Wales.  In November the British Medical Association said NHS staff were ""weeping with despair"" as figures showed 311,000 people were waiting for treatment in Wales, up by 2,400 on the previous month. In the same month lists in England were at their lowest for 17 years, with 856,600 people waiting for treatment. Dr Gibbons told Radio Wales: ""There is no doubt that, in managing waiting lists, England has done a lot of very very useful work, and we do need to learn from that.""  But he said the NHS in Wales also needed to create a healthier population rather than respond only to ill health, and a balanced view of priorities was important. ""We do need a consistent across-the-board approach, recognising the patients' experience of how they use the service is going to be, at the end of the day, the main test of how the service is working."" He said NHS staff wanted a period of consolidation after ""tremendous change and reform"". Later, Dr Gibbons praised the work of Ms Hutt, saying he ""agreed with everything she's done"" to change the health service in Wales. Dr Gibbons said he accepted there was a problem, but his job now was to build on the foundations put in place by his predecessor. He also acknowledged that until the waiting list issue was sorted out, the rest of the assembly government's health policy would be overshadowed.  Opposition members and some Labour MPs had long called for Ms Hutt's removal after sustained criticism over extended hospital waiting times. First Minister Rhodri Morgan told BBC Wales he had agreed with Ms Hutt in 2003 that she would not be health minister in the run-up to the 2007 elections. ""She's been doing the job for five years and eight months and, apart from Nye Bevan himself, (architect of the NHS), I don't think anybody has ever done the job for so long."" Mr Morgan said he had only told Ms Hutt of the reshuffle on Monday morning, and said the NHS in Wales was Dr Gibbons' ""baby"" now. In response to Dr Gibbons' comments, Ieuan Wyn Jones, leader of the Plaid Cymru group in the assembly, said: ""It is apparent that this reshuffle by the first minister was just changing the deckchairs on a sinking Titanic."" Kisrty Williams, for the Lib Dems, added: ""If the underlying policy is going to continue, then changing the minister will serve no purpose, other than to deflect flak from Labour's MPs,"" she said. Meanwhile Ms Hutt said she hoped ""that the people of Wales would benefit from my investment of the past five years and eight months"" Asked about waiting lists, she said that waiting times and lists were ""only 10% of the health agenda"" and that the Welsh Assembly Government had ""turned the corner"" on the issue. "
+
+Your Output(Must be one of "business entertainment politics sport tech"):
+politics
+
+Example 2:
+title:
+Deutsche Boerse set to 'woo' LSE
+
+content:
+" Bosses of Deutsche Boerse and the London Stock Exchange are to meet amid talk that a takeover bid for the LSE will be raised to £1.5bn ($2.9bn).  Last month, the German exchange tabled a 530 pence-per-share offer for LSE, valuing it at £1.3bn. Paris-based Euronext, owner of Liffe in London, has also said it is interested in bidding for LSE. Euronext is due to hold talks with LSE this week and it is reported to be ready to raise £1.4bn to fund a bid. Euronext chief Jean-Francois Theodore is scheduled to meet his LSE counterpart Clara Furse on Friday. Deutsche Boerse chief Werner Seifert is meeting Ms Furse on Thursday, in the third meeting between the two exchanges since the bid approach in December.  The LSE rejected Deutsche Boerse's proposed £1.3bn offer in December, saying it undervalued the business.  But it agreed to leave the door open for talks to find out whether a ""significantly-improved proposal"" would be in the interests of LSE's shareholders and customers. In the meantime, Euronext, which combines the Paris, Amsterdam and Lisbon stock exchanges, also began talks with the LSE. In a statement on Thursday, Euronext said any offer was likely to be solely in cash, but added that: ""There can be no assurances at this stage that any offer will be made."" A deal with either bidder would create the biggest stock market operator in Europe and the second biggest in the world after the New York Stock Exchange.  According to the FT, in its latest meeting Deutsche Boerse will adopt a charm offensive to woo the London exchange. The newspaper said the German suitor will offer to manage a combined cash and equities market out of London and let Ms Furse take the helm. Other reports this week said the Deutsche Boerse might even consider selling its Luxembourg-based Clearstream unit - the clearing house that processes securities transactions. Its ownership of Clearstream was seen as the main stumbling block to a London-Frankfurt merger. LSE shareholders feared a Deutsche Boerse takeover would force them to use Clearstream, making it difficult for them to negotiate for lower transaction fees. "
+
+Your Output(Must be one of "business entertainment politics sport tech"):
+business
+
+Example 3:
+title:
+Muslim group attacks TV drama 24
+
+content:
+" A British Muslim group has criticised the new series of US drama 24, which is about to be aired on Sky One, claiming it portrays Islam unfairly.  The Muslim Council of Britain has complained to broadcasting watchdog Ofcom. It says the programme breaches editorial guidelines. The group's members met with Sky executives on Tuesday after viewing previews of the first five episodes. The drama, now in its fourth series, begins on Sunday evening. The new series portrays a Muslim family as a sleeper terrorist cell. The Muslim Council of Britain said in a statement: ""We are greatly concerned by the unremittingly hostile and unbalanced portrayal of Muslims in this series of 24 based upon a preview of the first five episodes that we have seen."" ""There is not a single positive Muslim character in the storyline to date. At a time when negative stereotypes of Muslims are on the increase we feel that Sky - as a major UK broadcaster - has a responsibility to challenge these insidious views, not help to reinforce them."" But Sky denied the programme breached broadcasting guidelines. A spokesperson said: ""During a useful meeting yesterday, Sky listened to the concerns raised by representatives of the council. Sky does not believe that the episodes that it has reviewed to date breach Ofcom's programme code."" Fox TV, which shows the series in the US, is broadcasting public service announcements showing Muslims in a positive light after complaints about the series. "
+
+Your Output(Must be one of "business entertainment politics sport tech"):
+entertainment
+
+Example 4:
+title:
+Halo 2 heralds traffic explosion
+
+content:
+" The growing popularity of online gaming could spell problems for net service firms, warns network monitoring company Sandvine.  It issued the warning following analysis which shows that traffic on the Xbox game network increased fourfold on the launch day of Halo 2. The 9 November traffic explosion has continued into December, said Sandvine. Service providers now need to make sure that their networks can cope with the increasing demands for bandwidth. As well as being a popular single-player title, Halo 2 can be connected to Microsoft's subscription-based broadband network, Xbox Live. Gamers who want to play online can create their own clan, or team, and take on others to see how well they compare.  But the surge in numbers and huge demands for bandwidth should be a wake-up call to the industry which must ensure that their networks can cope with the increases in traffic, said Sandvine's chief technology officer Marc Morin.  In a bid to cope and ease congestion, providers are increasingly making their networks intelligent, finding out who is using bandwidth and for what. It could become common to charge people for the amount of bandwidth they use. ""The explosion in Xbox Live traffic attributed to Halo 2 should be seen as a clarion call,"" he said. ""ISPs need to enhance the broadband experience for these high-end users by prioritising or reserving bandwidth for games,"" he added.  One of the main factors that spoils online gaming is ""lag"" in which there is a noticeable delay between a gamer clicking on a mouse or keyboard and what happens in the online gaming world. Gamers tend to migrate toward networks with the lowest ""lag"". Analysing traffic will become increasingly important for service providers if they are to hold on to bandwidth-hungry gamers said Lindsay Schroth, an analyst with research firm The Yankee Group. ""In the competitive broadband environment, operators need to differentiate the way they offer access to services like live-play gaming,"" she said. In countries such as Korea, which has high levels of fast net connections to homes, online gaming is hugely popular. "
+
+Your Output(Must be one of "business entertainment politics sport tech"):
+tech
+
+Example 5:
+title:
+O'Sullivan quick to hail Italians
+
+content:
+" Ireland coach Eddie O'Sullivan heaped praise on Italy after seeing his side stutter to a 28-17 victory in Rome.  ""It was a hell of a tough game,"" said O'Sullivan. ""We struggled in the first half because we hadn't the football. ""Italy played really well. They handled the ball well in terms of kicking it, if that's not an oxymoron. ""We said before the game that it might take until 10 minutes from the end for this game to be won, and that's how it turned out."" Ireland struggled to cope with Italy's fierce start and were indebted to skipper Brian O'Driscoll, who set up tries for Geordan Murphy and Peter Stringer. ""We had our first attack in the Italian half after 22 minutes,"" said O'Sullivan. ""We had a good return, with three first-half possessions in their half and we scored twice. ""The second half was about spending more time in their half."" Scrum-half Peter Stringer was also glad that Ireland escaped wtih a victory. ""All credit to them,"" he told BBC Sport. ""We knew it would be tough coming to Rome. They always give us a tough game here and they showed a lot of spirit. ""They had a lot of ball in the first half but we got a few scores when we got into their 22."" "
+
+Your Output(Must be one of "business entertainment politics sport tech"):
+sport
+
+Example 6:
